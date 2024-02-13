@@ -26,7 +26,7 @@ public class CategoryService {
      * @return the object of category with the passed <i>id</i>.
      */
     @Transactional(readOnly = true)
-    public Category findCategory(long id) {
+    public Category findCategory(Long id) {
         final Optional<Category> category = categoryRepository.findById(id);
         return category.orElseThrow();
     }
@@ -43,8 +43,9 @@ public class CategoryService {
 
     /**
      * Adds the category to the database with the passed <i>name</i>.
+     *
      * @param name - category name.
-     * @return
+     * @return the object of the added category.
      */
     @Transactional
     public Category addCategory(String name) {
@@ -52,8 +53,15 @@ public class CategoryService {
         return categoryRepository.save(category);
     }
 
+    /**
+     * Edits the category fields with the passed <i>id</i> if it exists.
+     *
+     * @param id   - id of the category that needs to be changed.
+     * @param name - new category name.
+     * @return the object of the edited category.
+     */
     @Transactional
-    public Category editCategory(long id, String name) {
+    public Category editCategory(Long id, String name) {
         // TODO: добавить исключение, если нет категории с переданным id
         Category category = findCategory(id);
         if (!name.isBlank())
@@ -63,10 +71,11 @@ public class CategoryService {
 
     /**
      * Deletes the category with the passed <i>id</i> from the database.
+     *
      * @param id - category id.
      */
     @Transactional
-    public void deleteCategory(long id) {
+    public void deleteCategory(Long id) {
         final Category category = findCategory(id);
         categoryRepository.delete(category);
     }
@@ -75,7 +84,7 @@ public class CategoryService {
      * Deletes all categories from the database.
      */
     @Transactional
-    public void deleteAllCategories(){
+    public void deleteAllCategories() {
         categoryRepository.deleteAll();
     }
 }

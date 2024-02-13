@@ -53,7 +53,7 @@ public class Product {
     private float price;
 
     /**
-     * Field product amount
+     * Field amount of product in warehouse
      */
     @NonNull
     private int amount;
@@ -65,7 +65,7 @@ public class Product {
     private Date dateCreation;
 
     /**
-     * Field date and time of the last change amount
+     * Field date and time of the last change amount of product
      */
     @NonNull
     private Date dateLastChange;
