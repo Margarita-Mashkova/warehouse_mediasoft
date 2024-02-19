@@ -2,7 +2,9 @@ package com.warehouse.mapper;
 
 import com.warehouse.dto.ProductDto;
 import com.warehouse.model.Product;
+import org.mapstruct.AfterMapping;
 import org.mapstruct.Mapper;
+import org.mapstruct.MappingTarget;
 import org.mapstruct.ReportingPolicy;
 
 /**
@@ -15,8 +17,18 @@ public interface ProductMapper {
     /**
      * Defines the mapping rule for the Product object to the ProductDto object.
      *
-     * @param product - a Product object.
+     * @param product a Product object.
      * @return a ProductDto object.
      */
     ProductDto toProductDto(Product product);
+
+    /**
+     * Sets the category name in the ProductDto object after mapping from the Product object
+     * @param product - a Product object.
+     * @param productDto - a ProductDto object.
+     */
+    @AfterMapping
+    default void setCategoryName(Product product, @MappingTarget ProductDto productDto){
+        productDto.setCategoryName(product.getCategory().getName());
+    }
 }

@@ -1,5 +1,6 @@
 package com.warehouse.dto;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 /**

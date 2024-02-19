@@ -3,6 +3,8 @@ package com.warehouse.service;
 import com.warehouse.model.Category;
 import com.warehouse.model.Product;
 import com.warehouse.repository.ProductRepository;
+import com.warehouse.service.exception.ProductNotFoundException;
+import com.warehouse.util.validation.ValidatorUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,6 +32,12 @@ public class ProductService {
     private CategoryService categoryService;
 
     /**
+     * Search for the appropriate bean of the ValidatorUtil type and inject it in this field.
+     */
+    @Autowired
+    private ValidatorUtil validatorUtil;
+
+    /**
      * Returns a list of products that are available in the database.
      *
      * @return The list of all products or an empty list if there are no products in the database.
@@ -38,8 +46,6 @@ public class ProductService {
     public List<Product> findAllProducts() {
         return productRepository.findAll();
     }
-
-    // TODO: добавить исключение, если нет продукта с переданным id
 
     /**
      * Returns the product with the passed <i>id</i> from the database if it exists.
@@ -50,7 +56,7 @@ public class ProductService {
     @Transactional(readOnly = true)
     public Product findProduct(UUID id) {
         final Optional<Product> product = productRepository.findById(id);
-        return product.orElseThrow();
+        return product.orElseThrow(() -> new ProductNotFoundException(id));
     }
 
     /**
@@ -68,6 +74,7 @@ public class ProductService {
         Category category = categoryService.findCategory(categoryId);
         Date dateCreation = new Date();
         Product product = new Product(name, description, category, price, amount, dateCreation, dateCreation);
+        validatorUtil.validate(product);
         return productRepository.save(product);
     }
 
@@ -84,24 +91,18 @@ public class ProductService {
      */
     @Transactional
     public Product editProduct(UUID id, String name, String description, long categoryId, float price, int amount) {
-        //TODO: проверка на существование продукта
         Product product = findProduct(id);
-        //TODO: validation on blank lines (подумать, как изменять не все значения)
-        if (!name.isBlank())
-            product.setName(name);
-        if (!description.isBlank())
-            product.setDescription(description);
-        if (categoryId != 0) {
-            Category category = categoryService.findCategory(categoryId);
-            product.setCategory(category);
-        }
-        if (price != 0)
-            product.setPrice(price);
+        product.setName(name);
+        product.setDescription(description);
+        Category category = categoryService.findCategory(categoryId);
+        product.setCategory(category);
+        product.setPrice(price);
         if (product.getAmount() != amount) {
             Date dateLastChange = new Date();
             product.setDateLastChange(dateLastChange);
         }
         product.setAmount(amount);
+        validatorUtil.validate(product);
         return productRepository.save(product);
     }
 

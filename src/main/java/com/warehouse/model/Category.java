@@ -1,6 +1,7 @@
 package com.warehouse.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -28,6 +29,7 @@ public class Category {
      * Filed category name
      */
     @NonNull
+    @NotBlank(message = "Category name can't be null or empty")
     private String name;
 
     /**

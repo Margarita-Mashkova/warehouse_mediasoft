@@ -19,12 +19,12 @@ public class ProductController {
      * Search for the appropriate bean of the ProductService type and inject it in this field.
      */
     @Autowired
-    ProductService productService;
+    private ProductService productService;
     /**
      * Search for the appropriate bean of the ProductMapper type and inject it in this field.
      */
     @Autowired
-    ProductMapper productMapper;
+    private ProductMapper productMapper;
 
     /**
      * Processes the GET request along the path <i>/product/products</i> and returns a list of all products

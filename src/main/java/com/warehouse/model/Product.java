@@ -1,6 +1,8 @@
 package com.warehouse.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -30,12 +32,14 @@ public class Product {
      * Field product name
      */
     @NonNull
+    @NotBlank(message = "Product name can't be null or empty")
     private String name;
 
     /**
      * Field product description
      */
     @NonNull
+    @NotBlank(message = "Product description can't be null or empty")
     private String description;
 
     /**
@@ -50,12 +54,14 @@ public class Product {
      * Field product price
      */
     @NonNull
+    @Min(value = 0, message = "Product price can't be less than 0")
     private float price;
 
     /**
      * Field amount of product in warehouse
      */
     @NonNull
+    @Min(value = 0, message = "Product amount can't be less than 0")
     private int amount;
 
     /**

@@ -1,6 +1,8 @@
 package com.warehouse.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.warehouse.model.Category;
 import lombok.Data;
 
 import java.util.Date;
@@ -27,7 +29,10 @@ public class ProductDto {
      */
     private String description;
 
-    //TODO: category name
+    /**
+     * Field product category name
+     */
+    private String categoryName;
 
     /**
      * Field product price

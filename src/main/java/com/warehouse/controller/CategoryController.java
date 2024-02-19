@@ -18,12 +18,12 @@ public class CategoryController {
      * Search for the appropriate bean of the CategoryService type and inject it in this field.
      */
     @Autowired
-    CategoryService categoryService;
+    private CategoryService categoryService;
     /**
      * Search for the appropriate bean of the CategoryMapper type and inject it in this field.
      */
     @Autowired
-    CategoryMapper categoryMapper;
+    private CategoryMapper categoryMapper;
 
     /**
      * Processes the GET request along the path <i>/category/categories</i> and returns a list of all categories

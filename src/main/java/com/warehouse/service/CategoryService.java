@@ -2,6 +2,8 @@ package com.warehouse.service;
 
 import com.warehouse.model.Category;
 import com.warehouse.repository.CategoryRepository;
+import com.warehouse.service.exception.CategoryNotFoundException;
+import com.warehouse.util.validation.ValidatorUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,8 +18,11 @@ public class CategoryService {
      */
     @Autowired
     private CategoryRepository categoryRepository;
-
-    // TODO: добавить исключение, если нет категории с переданным id
+    /**
+     * Search for the appropriate bean of the ValidatorUtil type and inject it in this field.
+     */
+    @Autowired
+    private ValidatorUtil validatorUtil;
 
     /**
      * Returns the category with the passed <i>id</i> from the database if it exists. Else
@@ -28,7 +33,7 @@ public class CategoryService {
     @Transactional(readOnly = true)
     public Category findCategory(Long id) {
         final Optional<Category> category = categoryRepository.findById(id);
-        return category.orElseThrow();
+        return category.orElseThrow(() -> new CategoryNotFoundException(id));
     }
 
     /**
@@ -50,6 +55,7 @@ public class CategoryService {
     @Transactional
     public Category addCategory(String name) {
         Category category = new Category(name);
+        validatorUtil.validate(category);
         return categoryRepository.save(category);
     }
 
@@ -62,10 +68,9 @@ public class CategoryService {
      */
     @Transactional
     public Category editCategory(Long id, String name) {
-        // TODO: добавить исключение, если нет категории с переданным id
         Category category = findCategory(id);
-        if (!name.isBlank())
-            category.setName(name);
+        category.setName(name);
+        validatorUtil.validate(category);
         return categoryRepository.save(category);
     }
 
