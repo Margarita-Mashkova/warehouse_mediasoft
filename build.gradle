@@ -11,6 +11,14 @@ java {
 	sourceCompatibility = '17'
 }
 
+def profile = project.hasProperty('prod') ? 'prod' : 'dev'
+println 'Current profile is ' + profile
+
+bootRun {
+	systemProperties = System.properties
+	systemProperty 'spring.profiles.active', profile
+}
+
 repositories {
 	mavenCentral()
 }
