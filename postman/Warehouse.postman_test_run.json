@@ -1,0 +1,547 @@
+{
+	"id": "63aa6c68-d921-4f5e-9f33-719e5b280fd2",
+	"name": "Warehouse",
+	"timestamp": "2024-02-19T19:24:10.948Z",
+	"collection_id": "31794418-1b7a3d69-85f7-461a-8452-7b41a8b8e447",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 25,
+	"delay": 0,
+	"persist": true,
+	"status": "finished",
+	"startedAt": "2024-02-19T19:24:08.116Z",
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "514e7620-de69-4fb2-b8f2-b32ec7615b4a",
+			"name": "add category",
+			"url": "http://localhost:8080/category?name=Sport",
+			"time": 12,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response status code is 200": true,
+				"Name query parameter is reflected in the response": true
+			},
+			"testPassFailCounts": {
+				"Response status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Name query parameter is reflected in the response": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				12
+			],
+			"allTests": [
+				{
+					"Response status code is 200": true,
+					"Name query parameter is reflected in the response": true
+				}
+			]
+		},
+		{
+			"id": "c8ce4fc6-db8a-4138-9c91-8aacd558c67a",
+			"name": "add not valid category",
+			"url": "http://localhost:8080/category?name= ",
+			"time": 5,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Response status code is 400": true
+			},
+			"testPassFailCounts": {
+				"Response status code is 400": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				5
+			],
+			"allTests": [
+				{
+					"Response status code is 400": true
+				}
+			]
+		},
+		{
+			"id": "6e0b2f77-09ad-4a2d-9c46-24b048f996a3",
+			"name": "get all categories",
+			"url": "http://localhost:8080/category/categories",
+			"time": 11,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response status code is 200": true,
+				"Response is an array with at least one object": true
+			},
+			"testPassFailCounts": {
+				"Response status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is an array with at least one object": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				11
+			],
+			"allTests": [
+				{
+					"Response status code is 200": true,
+					"Response is an array with at least one object": true
+				}
+			]
+		},
+		{
+			"id": "b2fb44fd-44a4-4b7b-8ecd-da9804db1ef8",
+			"name": "get category",
+			"url": "http://localhost:8080/category",
+			"time": 7,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response status code is 200": true,
+				"ID in request and ID in response should be the same": true
+			},
+			"testPassFailCounts": {
+				"Response status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"ID in request and ID in response should be the same": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				7
+			],
+			"allTests": [
+				{
+					"Response status code is 200": true,
+					"ID in request and ID in response should be the same": true
+				}
+			]
+		},
+		{
+			"id": "456477c9-6d6e-4e5d-9b81-9b0cb090066c",
+			"name": "get nonexistent category",
+			"url": "http://localhost:8080/category/-1",
+			"time": 8,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Response status code is 400": true
+			},
+			"testPassFailCounts": {
+				"Response status code is 400": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				8
+			],
+			"allTests": [
+				{
+					"Response status code is 400": true
+				}
+			]
+		},
+		{
+			"id": "0aa77e91-e2e8-493b-85f6-47ac5a486baa",
+			"name": "edit category",
+			"url": "http://localhost:8080/category?name=clothes",
+			"time": 12,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response status code is 200": true,
+				"Fields in request and Fields in response should be the same": true
+			},
+			"testPassFailCounts": {
+				"Response status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Fields in request and Fields in response should be the same": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				12
+			],
+			"allTests": [
+				{
+					"Response status code is 200": true,
+					"Fields in request and Fields in response should be the same": true
+				}
+			]
+		},
+		{
+			"id": "d21490e3-4f73-4f99-88ea-58116cf77b3b",
+			"name": "delete category",
+			"url": "http://localhost:8080/category",
+			"time": 9,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Response status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				9
+			],
+			"allTests": [
+				{
+					"Response status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "fad1adbf-0cca-47f9-a4c1-cc5f47c9e2d6",
+			"name": "add test category",
+			"url": "http://localhost:8080/category?name=Clothes",
+			"time": 7,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response status code is 200": true,
+				"Name query parameter is reflected in the response": true
+			},
+			"testPassFailCounts": {
+				"Response status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Name query parameter is reflected in the response": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				7
+			],
+			"allTests": [
+				{
+					"Response status code is 200": true,
+					"Name query parameter is reflected in the response": true
+				}
+			]
+		},
+		{
+			"id": "7ef82f44-246f-4283-9ce7-d45b81ee9ce7",
+			"name": "add product",
+			"url": "http://localhost:8080/product?name=Skirt&description=Nice&price=2000&amount=10&categoryId=4",
+			"time": 14,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response status code is 200": true,
+				"Fields in request and Fields in response should be the same": true
+			},
+			"testPassFailCounts": {
+				"Response status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Fields in request and Fields in response should be the same": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				14
+			],
+			"allTests": [
+				{
+					"Response status code is 200": true,
+					"Fields in request and Fields in response should be the same": true
+				}
+			]
+		},
+		{
+			"id": "750e2e70-32e3-4b00-b179-3dd2f32e603e",
+			"name": "add not valid product",
+			"url": "http://localhost:8080/product?name= &description= &categoryId=1&price=-2000&amount=-10",
+			"time": 9,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Response status code is 400": true
+			},
+			"testPassFailCounts": {
+				"Response status code is 400": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				9
+			],
+			"allTests": [
+				{
+					"Response status code is 400": true
+				}
+			]
+		},
+		{
+			"id": "4b648e42-dee1-430a-bc68-821b955ea157",
+			"name": "get all products",
+			"url": "http://localhost:8080/product/products",
+			"time": 16,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response status code is 200": true,
+				"Response is an array with at least one object": true
+			},
+			"testPassFailCounts": {
+				"Response status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is an array with at least one object": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				16
+			],
+			"allTests": [
+				{
+					"Response status code is 200": true,
+					"Response is an array with at least one object": true
+				}
+			]
+		},
+		{
+			"id": "c22e513d-00ff-4bf5-8984-d6a1317fda86",
+			"name": "get product",
+			"url": "http://localhost:8080/product",
+			"time": 11,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response status code is 200": true,
+				"UUID in request and UUID in response should be the same": true
+			},
+			"testPassFailCounts": {
+				"Response status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"UUID in request and UUID in response should be the same": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				11
+			],
+			"allTests": [
+				{
+					"Response status code is 200": true,
+					"UUID in request and UUID in response should be the same": true
+				}
+			]
+		},
+		{
+			"id": "ad59c1ba-680b-47af-b5b4-83e944e0aa3f",
+			"name": "get nonexistent product",
+			"url": "http://localhost:8080/product",
+			"time": 7,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Response status code is 400": true
+			},
+			"testPassFailCounts": {
+				"Response status code is 400": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				7
+			],
+			"allTests": [
+				{
+					"Response status code is 400": true
+				}
+			]
+		},
+		{
+			"id": "bd6fc2b8-7edb-4f04-8d57-c8ee24c529dd",
+			"name": "edit product",
+			"url": "http://localhost:8080/product?name=cap&description=good&price=500&amount=5&categoryId=4",
+			"time": 11,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response status code is 200": true,
+				"Fields in request and Fields in response should be the same": true,
+				"The date of the last change in the amount of products should change": true
+			},
+			"testPassFailCounts": {
+				"Response status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Fields in request and Fields in response should be the same": {
+					"pass": 1,
+					"fail": 0
+				},
+				"The date of the last change in the amount of products should change": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				11
+			],
+			"allTests": [
+				{
+					"Response status code is 200": true,
+					"Fields in request and Fields in response should be the same": true,
+					"The date of the last change in the amount of products should change": true
+				}
+			]
+		},
+		{
+			"id": "de85c852-3ff8-46f8-91e4-6c6b437a429c",
+			"name": "delete product",
+			"url": "http://localhost:8080/product",
+			"time": 8,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Response status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				8
+			],
+			"allTests": [
+				{
+					"Response status code is 200": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 147,
+	"collection": {
+		"requests": [
+			{
+				"id": "514e7620-de69-4fb2-b8f2-b32ec7615b4a",
+				"method": "POST"
+			},
+			{
+				"id": "c8ce4fc6-db8a-4138-9c91-8aacd558c67a",
+				"method": "POST"
+			},
+			{
+				"id": "6e0b2f77-09ad-4a2d-9c46-24b048f996a3",
+				"method": "GET"
+			},
+			{
+				"id": "b2fb44fd-44a4-4b7b-8ecd-da9804db1ef8",
+				"method": "GET"
+			},
+			{
+				"id": "456477c9-6d6e-4e5d-9b81-9b0cb090066c",
+				"method": "GET"
+			},
+			{
+				"id": "0aa77e91-e2e8-493b-85f6-47ac5a486baa",
+				"method": "PUT"
+			},
+			{
+				"id": "d21490e3-4f73-4f99-88ea-58116cf77b3b",
+				"method": "DELETE"
+			},
+			{
+				"id": "fad1adbf-0cca-47f9-a4c1-cc5f47c9e2d6",
+				"method": "POST"
+			},
+			{
+				"id": "7ef82f44-246f-4283-9ce7-d45b81ee9ce7",
+				"method": "POST"
+			},
+			{
+				"id": "750e2e70-32e3-4b00-b179-3dd2f32e603e",
+				"method": "POST"
+			},
+			{
+				"id": "4b648e42-dee1-430a-bc68-821b955ea157",
+				"method": "GET"
+			},
+			{
+				"id": "c22e513d-00ff-4bf5-8984-d6a1317fda86",
+				"method": "GET"
+			},
+			{
+				"id": "ad59c1ba-680b-47af-b5b4-83e944e0aa3f",
+				"method": "GET"
+			},
+			{
+				"id": "bd6fc2b8-7edb-4f04-8d57-c8ee24c529dd",
+				"method": "PUT"
+			},
+			{
+				"id": "de85c852-3ff8-46f8-91e4-6c6b437a429c",
+				"method": "DELETE"
+			}
+		]
+	}
+}

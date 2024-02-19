@@ -1,0 +1,650 @@
+{
+	"info": {
+		"_postman_id": "1b7a3d69-85f7-461a-8452-7b41a8b8e447",
+		"name": "Warehouse",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "31794418"
+	},
+	"item": [
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "add category",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Name query parameter is reflected in the response\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    pm.expect(responseData.name).to.equal(pm.request.url.query.get(\"name\"));\r",
+									"    pm.globals.set(\"category_id\", responseData.id);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/category?name=Sport",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"category"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Sport"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add not valid category",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 400\", function () {\r",
+									"  pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/category?name= ",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"category"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": " "
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all categories",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is an array with at least one object\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('array').that.is.not.empty;\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/category/categories"
+					},
+					"response": []
+				},
+				{
+					"name": "get category",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.equal(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"ID in request and ID in response should be the same\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    const requestData =  parseInt(pm.request.url.path[1]);\r",
+									"\r",
+									"    pm.expect(responseData.id).to.equal(requestData);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.request.url.path[1] = pm.globals.get(\"category_id\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/category"
+					},
+					"response": []
+				},
+				{
+					"name": "get nonexistent category",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 400\", function () {\r",
+									"  pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/category/-1"
+					},
+					"response": []
+				},
+				{
+					"name": "edit category",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Fields in request and Fields in response should be the same\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"\r",
+									"    pm.expect(responseData.name).to.equal(pm.request.url.query.get(\"name\"));\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.request.url.path[1] = pm.globals.get(\"category_id\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/category?name=clothes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"category"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "clothes"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete category",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.request.url.path[1] = pm.globals.get(\"category_id\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/category"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "add test category",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Name query parameter is reflected in the response\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    pm.expect(responseData.name).to.equal(pm.request.url.query.get(\"name\"));\r",
+									"    pm.globals.set(\"categoryTest_id\", responseData.id);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/category?name=Clothes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"category"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Clothes"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Fields in request and Fields in response should be the same\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    pm.expect(responseData.name).to.equal(pm.request.url.query.get(\"name\"));\r",
+									"    pm.expect(responseData.description).to.equal(pm.request.url.query.get(\"description\"));\r",
+									"    pm.expect(responseData.price).to.equal(parseFloat(pm.request.url.query.get(\"price\")));\r",
+									"    pm.expect(responseData.amount).to.equal(parseFloat(pm.request.url.query.get(\"amount\")));\r",
+									"    pm.globals.set(\"product_UUID\", responseData.id);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.request.url.addQueryParams(\"categoryId=\"+pm.globals.get(\"categoryTest_id\"))"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/product?name=Skirt&description=Nice&price=2000&amount=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"product"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Skirt"
+								},
+								{
+									"key": "description",
+									"value": "Nice"
+								},
+								{
+									"key": "price",
+									"value": "2000"
+								},
+								{
+									"key": "amount",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add not valid product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 400\", function () {\r",
+									"  pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/product?name= &description= &categoryId=1&price=-2000&amount=-10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"product"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": " "
+								},
+								{
+									"key": "description",
+									"value": " "
+								},
+								{
+									"key": "categoryId",
+									"value": "1"
+								},
+								{
+									"key": "price",
+									"value": "-2000"
+								},
+								{
+									"key": "amount",
+									"value": "-10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all products",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is an array with at least one object\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('array').that.is.not.empty;\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/product/products"
+					},
+					"response": []
+				},
+				{
+					"name": "get product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.equal(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"UUID in request and UUID in response should be the same\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    const requestData =  pm.request.url.path[1];\r",
+									"\r",
+									"    pm.expect(responseData.id).to.equal(requestData);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.request.url.path[1] = pm.globals.get(\"product_UUID\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/product"
+					},
+					"response": []
+				},
+				{
+					"name": "get nonexistent product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 400\", function () {\r",
+									"  pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"uuid = require('uuid');\r",
+									"pm.request.url.path[1] = uuid.v4();"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/product"
+					},
+					"response": []
+				},
+				{
+					"name": "edit product",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.request.url.path[1] = pm.globals.get(\"product_UUID\");\r",
+									"pm.request.url.addQueryParams(\"categoryId=\"+pm.globals.get(\"categoryTest_id\"));\r",
+									"moment = require('moment');\r",
+									"pm.globals.set(\"time\", moment().format(\"DD-MM-yyyy HH:mm:ss\"));\r",
+									"setTimeout(() => {}, 2000); \r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Fields in request and Fields in response should be the same\", function () {\r",
+									"    const responseData = pm.response.json();    \r",
+									"\r",
+									"    pm.expect(responseData.name).to.equal(pm.request.url.query.get(\"name\"));\r",
+									"    pm.expect(responseData.description).to.equal(pm.request.url.query.get(\"description\"));\r",
+									"    pm.expect(responseData.price).to.equal(parseFloat(pm.request.url.query.get(\"price\")));\r",
+									"    pm.expect(responseData.amount).to.equal(parseFloat(pm.request.url.query.get(\"amount\")));    \r",
+									"});\r",
+									"\r",
+									"pm.test(\"The date of the last change in the amount of products should change\", function(){\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    var dateLastChange = moment(responseData.dateLastChange, 'DD-MM-yyyy HH:mm:ss').toDate();\r",
+									"    var time = moment(pm.globals.get(\"time\"), 'DD-MM-yyyy HH:mm:ss').toDate();\r",
+									"    pm.expect(dateLastChange).to.be.above(time);    \r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/product?name=cap&description=good&price=500&amount=5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"product"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "cap"
+								},
+								{
+									"key": "description",
+									"value": "good"
+								},
+								{
+									"key": "price",
+									"value": "500"
+								},
+								{
+									"key": "amount",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.request.url.path[1] = pm.globals.get(\"product_UUID\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/product"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
