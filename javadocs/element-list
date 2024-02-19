@@ -1,0 +1,10 @@
+com.warehouse
+com.warehouse.controller
+com.warehouse.dto
+com.warehouse.mapper
+com.warehouse.model
+com.warehouse.repository
+com.warehouse.service
+com.warehouse.service.exception
+com.warehouse.util.handler
+com.warehouse.util.validation

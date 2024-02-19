@@ -10,8 +10,14 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+/**
+ * A set of tests for testing the methods of the Category service
+ */
 @SpringBootTest
 public class JpaCategoryTests {
+    /**
+     * Search for the appropriate bean of the CategoryService type and inject it in this field.
+     */
     @Autowired
     private CategoryService categoryService;
 

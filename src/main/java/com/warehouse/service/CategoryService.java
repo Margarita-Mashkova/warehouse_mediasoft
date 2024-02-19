@@ -12,6 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * A service class that provides methods for performing CRUD operations on the <b>category</b> entity.
+ */
 @Service
 public class CategoryService {
     /**
@@ -28,7 +31,7 @@ public class CategoryService {
     /**
      * Returns the category with the passed <i>id</i> from the database if it exists. Else
      *
-     * @param id - id of category.
+     * @param id id of category.
      * @return the object of category with the passed <i>id</i>.
      * @throws CategoryNotFoundException if category with the passed <i>id</i> doesn't exist.
      */
@@ -51,7 +54,7 @@ public class CategoryService {
     /**
      * Adds the category to the database with the passed <i>name</i>.
      *
-     * @param name - category name.
+     * @param name category name.
      * @return the object of the added category.
      * @throws com.warehouse.util.validation.ValidationException if the object has not passed validation.
      */
@@ -65,8 +68,8 @@ public class CategoryService {
     /**
      * Edits the category fields with the passed <i>id</i> if it exists.
      *
-     * @param id   - id of the category that needs to be changed.
-     * @param name - new category name.
+     * @param id   id of the category that needs to be changed.
+     * @param name new category name.
      * @return the object of the edited category.
      * @throws com.warehouse.util.validation.ValidationException if the object has not passed validation.
      */
@@ -81,7 +84,7 @@ public class CategoryService {
     /**
      * Deletes the category with the passed <i>id</i> from the database.
      *
-     * @param id - category id.
+     * @param id category id.
      * @throws CategoryNotFoundException if category with the passed <i>id</i> doesn't exist.
      */
     @Transactional

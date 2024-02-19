@@ -42,7 +42,7 @@ public class CategoryController {
     /**
      * Processes a GET request along the path <i>/category/{id}</i> and returns category for the passed id.
      *
-     * @param id - category id
+     * @param id category id
      * @return the CategoryDto object for the passed category id.
      */
     @GetMapping("/{id}")
@@ -53,7 +53,7 @@ public class CategoryController {
     /**
      * Processes the POST request along the path <i>/category</i> and creates a new category with the passed name.
      *
-     * @param name - category name.
+     * @param name category name.
      * @return a CategoryDto object for the created category.
      */
     @PostMapping
@@ -64,8 +64,8 @@ public class CategoryController {
     /**
      * Processes the PUT request along the path <i>/category/{id}</i> and changes the name of the category with the passed ID.
      *
-     * @param id   - id of the category that needs to be changed.
-     * @param name - new category name.
+     * @param id   id of the category that needs to be changed.
+     * @param name new category name.
      * @return a CategoryDto object for the edited category.
      */
     @PutMapping("/{id}")
@@ -76,7 +76,7 @@ public class CategoryController {
     /**
      * Processes the DELETE request along the path <i>/category/{id}</i> and deletes the category with the passed ID.
      *
-     * @param id - id of the category that needs to be deleted.
+     * @param id id of the category that needs to be deleted.
      */
     @DeleteMapping("/{id}")
     public void deleteCategory(@PathVariable Long id) {

@@ -24,8 +24,8 @@ public interface ProductMapper {
 
     /**
      * Sets the category name in the ProductDto object after mapping from the Product object
-     * @param product - a Product object.
-     * @param productDto - a ProductDto object.
+     * @param product a Product object.
+     * @param productDto a ProductDto object.
      */
     @AfterMapping
     default void setCategoryName(Product product, @MappingTarget ProductDto productDto){

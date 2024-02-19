@@ -11,14 +11,26 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.UUID;
 
+/**
+ * A set of tests for testing the methods of the Product service
+ */
 @SpringBootTest
 public class JpaProductTests {
+    /**
+     * Search for the appropriate bean of the ProductService type and inject it in this field.
+     */
     @Autowired
     private ProductService productService;
 
+    /**
+     * Search for the appropriate bean of the CategoryService type and inject it in this field.
+     */
     @Autowired
     private CategoryService categoryService;
 
+    /**
+     * Id of the test category
+     */
     private Long categoryId;
 
     /**
@@ -91,6 +103,8 @@ public class JpaProductTests {
 
     /**
      * Changing the product fields. It is also expected that the date of the last change in the number of products will change.
+     * @throws InterruptedException when a thread is waiting, sleeping, or otherwise occupied, and the thread
+     * is interrupted, either before or during the activity
      */
     @Test
     void testEditProduct() throws InterruptedException {

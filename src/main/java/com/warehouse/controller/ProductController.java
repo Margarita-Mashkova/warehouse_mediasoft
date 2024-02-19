@@ -43,7 +43,7 @@ public class ProductController {
     /**
      * Processes a GET request along the path <i>/product/{id}</i> and returns the product for the passed UUID.
      *
-     * @param id - UUID of product.
+     * @param id UUID of product.
      * @return the ProductDto object for the passed product UUID.
      */
     @GetMapping("/{id}")
@@ -54,11 +54,11 @@ public class ProductController {
     /**
      * Processes the POST request along the path <i>/product</i> and creates a new product with the passed params.
      *
-     * @param name        - product name.
-     * @param description - product description.
-     * @param categoryId  - category id to which the added product belongs.
-     * @param price       - product price in rubles.
-     * @param amount      - amount of product in warehouse.
+     * @param name        product name.
+     * @param description product description.
+     * @param categoryId  category id to which the added product belongs.
+     * @param price       product price in rubles.
+     * @param amount      amount of product in warehouse.
      * @return a ProductDto object for the created product.
      */
     @PostMapping
@@ -70,12 +70,12 @@ public class ProductController {
     /**
      * Processes the PUT request along the path <i>/product/{id}</i> and changes the fields of the product with the passed UUID.
      *
-     * @param id          - UUID of the product that needs to be changed.
-     * @param name        - new product name.
-     * @param description - new product description.
-     * @param categoryId  - new category id to which the edited product belongs.
-     * @param price       - new product price in rubles.
-     * @param amount      - new amount of product in warehouse.
+     * @param id          UUID of the product that needs to be changed.
+     * @param name        new product name.
+     * @param description new product description.
+     * @param categoryId  new category id to which the edited product belongs.
+     * @param price       new product price in rubles.
+     * @param amount      new amount of product in warehouse.
      * @return a ProductDto object for the edited product.
      */
     @PutMapping("/{id}")
@@ -87,7 +87,7 @@ public class ProductController {
     /**
      * Processes the DELETE request along the path <i>/product/{id}</i> and deletes the product with the passed UUID.
      *
-     * @param id - UUID of the product that needs to be deleted.
+     * @param id UUID of the product that needs to be deleted.
      */
     @DeleteMapping("/{id}")
     public void deleteProduct(@PathVariable UUID id) {

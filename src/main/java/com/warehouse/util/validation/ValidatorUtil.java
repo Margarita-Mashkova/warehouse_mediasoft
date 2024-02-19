@@ -13,8 +13,17 @@ import java.util.stream.Collectors;
  */
 @Component
 public class ValidatorUtil {
+    /**
+     * The interface from the package jakarta.validation, which is used to check objects for compliance with certain rules
+     * or restrictions.
+     * @see <a href="https://jakarta.ee/specifications/bean-validation/3.0/jakarta-bean-validation-spec-3.0.html">
+     *     Jakarta Bean Validation specification</a>
+     */
     private final Validator validator;
 
+    /**
+     * The constructor of the class initializing the validator object.
+     */
     public ValidatorUtil() {
         this.validator = Validation.buildDefaultValidatorFactory().getValidator();
     }

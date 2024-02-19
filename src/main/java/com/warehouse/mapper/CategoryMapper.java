@@ -15,7 +15,7 @@ public interface CategoryMapper {
     /**
      * Defines the mapping rule for the Category object to the CategoryDto object.
      *
-     * @param category - a Category object.
+     * @param category a Category object.
      * @return a CategoryDto object.
      */
     CategoryDto toCategoryDto(Category category);
