@@ -50,8 +50,9 @@ public class ProductService {
     /**
      * Returns the product with the passed <i>id</i> from the database if it exists.
      *
-     * @param id - UUID of product.
+     * @param id UUID of product.
      * @return the object of product with the passed <i>id</i>.
+     * @throws ProductNotFoundException if product with the passed <i>id</i> doesn't exist.
      */
     @Transactional(readOnly = true)
     public Product findProduct(UUID id) {
@@ -62,12 +63,14 @@ public class ProductService {
     /**
      * Adds the product to the database with the passed params.
      *
-     * @param name        - product name.
-     * @param description - product description.
-     * @param categoryId  - category id to which the added product belongs.
-     * @param price       - product price in rubles.
-     * @param amount      - amount of product in warehouse.
+     * @param name        product name.
+     * @param description product description.
+     * @param categoryId  category id to which the added product belongs.
+     * @param price       product price in rubles.
+     * @param amount      amount of product in warehouse.
      * @return the object of the added product.
+     * @throws com.warehouse.service.exception.CategoryNotFoundException if category with the passed <i>categoryId</i> doesn't exist.
+     * @throws com.warehouse.util.validation.ValidationException if the object has not passed validation.
      */
     @Transactional
     public Product addProduct(String name, String description, Long categoryId, float price, int amount) {
@@ -81,13 +84,16 @@ public class ProductService {
     /**
      * Edits the product fields with the passed <i>id</i> if it exists.
      *
-     * @param id          - UUID of the product that needs to be changed.
-     * @param name        - new product name.
-     * @param description - new product description.
-     * @param categoryId  - new category id to which the edited product belongs.
-     * @param price       - new product price in rubles.
-     * @param amount      - new amount of product in warehouse.
+     * @param id          UUID of the product that needs to be changed.
+     * @param name        new product name.
+     * @param description new product description.
+     * @param categoryId  new category id to which the edited product belongs.
+     * @param price       new product price in rubles.
+     * @param amount      new amount of product in warehouse.
      * @return the object of the edited product.
+     * @throws com.warehouse.service.exception.CategoryNotFoundException if category with the passed <i>categoryId</i> doesn't exist.
+     * @throws ProductNotFoundException if product with the passed <i>id</i> doesn't exist.
+     * @throws com.warehouse.util.validation.ValidationException if the object has not passed validation.
      */
     @Transactional
     public Product editProduct(UUID id, String name, String description, long categoryId, float price, int amount) {
@@ -109,7 +115,8 @@ public class ProductService {
     /**
      * Deletes the product with the passed <i>id</i> from the database if it exists.
      *
-     * @param id - UUID of the product that needs to be deleted.
+     * @param id UUID of the product that needs to be deleted.
+     * @throws ProductNotFoundException if product with the passed <i>id</i> doesn't exist.
      */
     @Transactional
     public void deleteProduct(UUID id) {

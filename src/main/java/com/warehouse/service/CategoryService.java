@@ -3,6 +3,7 @@ package com.warehouse.service;
 import com.warehouse.model.Category;
 import com.warehouse.repository.CategoryRepository;
 import com.warehouse.service.exception.CategoryNotFoundException;
+import com.warehouse.service.exception.ProductNotFoundException;
 import com.warehouse.util.validation.ValidatorUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,7 @@ public class CategoryService {
      *
      * @param id - id of category.
      * @return the object of category with the passed <i>id</i>.
+     * @throws CategoryNotFoundException if category with the passed <i>id</i> doesn't exist.
      */
     @Transactional(readOnly = true)
     public Category findCategory(Long id) {
@@ -51,6 +53,7 @@ public class CategoryService {
      *
      * @param name - category name.
      * @return the object of the added category.
+     * @throws com.warehouse.util.validation.ValidationException if the object has not passed validation.
      */
     @Transactional
     public Category addCategory(String name) {
@@ -65,6 +68,7 @@ public class CategoryService {
      * @param id   - id of the category that needs to be changed.
      * @param name - new category name.
      * @return the object of the edited category.
+     * @throws com.warehouse.util.validation.ValidationException if the object has not passed validation.
      */
     @Transactional
     public Category editCategory(Long id, String name) {
@@ -78,6 +82,7 @@ public class CategoryService {
      * Deletes the category with the passed <i>id</i> from the database.
      *
      * @param id - category id.
+     * @throws CategoryNotFoundException if category with the passed <i>id</i> doesn't exist.
      */
     @Transactional
     public void deleteCategory(Long id) {
